@@ -1,20 +1,13 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["src/API/API.csproj", "API/"]
-RUN dotnet restore "src/API/API.csproj"
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+WORKDIR /source
 COPY . .
-WORKDIR "/src/API"
-RUN dotnet build "API.csproj" -c Release -o /app/build
+RUN dotnet restore "API.csproj" --disable-parallel
+RUN dotnet publish "API.csproj" -c release -o /app --no-restore
 
-FROM build AS publish
-RUN dotnet publish "API.csproj" -c Release -o /app/publish
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "API.dll"]
+COPY --from=build /app ./
+
+EXPOSE 5000
+
+ENTRYPOINT ["dotnet","API.dll"]
