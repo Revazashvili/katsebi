@@ -1,5 +1,6 @@
 using Database.Common;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Database;
 
@@ -10,22 +11,43 @@ public static class ServiceCollectionExtensions
     {
         var databaseOptions = new DatabaseOptions();
         databaseOptionsAction.Invoke(databaseOptions);
-        if (!databaseOptions.UseInMemoryDatabase.HasValue && string.IsNullOrEmpty(databaseOptions.ConnectionString))
-            throw new Exception("One of property must have value");
-        if(databaseOptions.UseInMemoryDatabase.HasValue && databaseOptions.UseInMemoryDatabase.Value)
-            services.AddDbContext<KatsebiContext>(options => options.UseInMemoryDatabase(InMemoryDatabaseName));
-        else
+        services = databaseOptions switch
         {
-            services.AddDbContext<KatsebiContext>(options =>
-            {
-                options.UseNpgsql(databaseOptions.ConnectionString!,
-                    builder =>
-                    {
-                        builder.MigrationsAssembly(typeof(KatsebiContext).Assembly.FullName);
-                        builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                    });
-            });
+            {ConnectionString: var cs, UseInMemoryDatabase: false} when string.IsNullOrEmpty(cs) =>
+                throw new Exception("One of property must have value"),
+            { UseInMemoryDatabase: true} => 
+                services.AddDbContext<KatsebiContext>(options => options.UseInMemoryDatabase(InMemoryDatabaseName)),
+            { UseInMemoryDatabase:false,ConnectionString: var cs} =>
+                services.AddDbContext<KatsebiContext>(options =>
+                {
+                    options.UseNpgsql(databaseOptions.ConnectionString!,
+                        builder =>
+                        {
+                            builder.MigrationsAssembly(typeof(KatsebiContext).Assembly.FullName);
+                            builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                        });
+                })
+        };
+
+        return databaseOptions.EnableAutoMigration ? services.AutoMigrate() : services;
+    }
+
+    private static IServiceCollection AutoMigrate(this IServiceCollection services)
+    {
+        var serviceProvider = services.BuildServiceProvider();
+        try
+        {
+            var context = serviceProvider.GetService<KatsebiContext>();
+            if (context!.Database.IsNpgsql())
+                context.Database.Migrate();
         }
+        catch (Exception exception)
+        {
+            var logger = serviceProvider.GetService<ILogger>();
+            logger?.LogError(exception, "An error occurred while migrating the database");
+            throw;
+        }
+
         return services;
     }
 }
