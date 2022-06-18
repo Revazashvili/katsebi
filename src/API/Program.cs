@@ -24,6 +24,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapGraphQL();
 app.MapBananaCakePop();
 
 app.Run();
