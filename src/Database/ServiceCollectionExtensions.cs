@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Database;
 
-public static class ServiceCollectionExtension
+public static class ServiceCollectionExtensions
 {
     private const string InMemoryDatabaseName = "KatsebiDb";
     public static IServiceCollection AddDatabase(this IServiceCollection services,Action<DatabaseOptions> databaseOptionsAction)
