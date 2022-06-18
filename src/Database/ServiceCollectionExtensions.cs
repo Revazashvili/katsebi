@@ -35,19 +35,9 @@ public static class ServiceCollectionExtensions
     private static IServiceCollection AutoMigrate(this IServiceCollection services)
     {
         var serviceProvider = services.BuildServiceProvider();
-        try
-        {
-            var context = serviceProvider.GetService<KatsebiContext>();
-            if (context!.Database.IsNpgsql())
-                context.Database.Migrate();
-        }
-        catch (Exception exception)
-        {
-            var logger = serviceProvider.GetService<ILogger>();
-            logger?.LogError(exception, "An error occurred while migrating the database");
-            throw;
-        }
-
+        var context = serviceProvider.GetService<KatsebiContext>();
+        if (context!.Database.IsNpgsql())
+            context.Database.Migrate();
         return services;
     }
 }
