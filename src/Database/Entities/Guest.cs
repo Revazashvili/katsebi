@@ -1,7 +1,7 @@
 namespace Database.Entities;
 
 #pragma warning disable CS8618
-public class Guest
+public class Guest : Auditable
 {
     public Guest()
     {
