@@ -1,3 +1,7 @@
 namespace Database.Common;
 
-public record DatabaseOptions(bool? UseInMemoryDatabase, string? ConnectionString);
+public class DatabaseOptions
+{
+    public bool? UseInMemoryDatabase { get; set; }
+    public string? ConnectionString { get; set; }
+}

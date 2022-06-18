@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     private const string InMemoryDatabaseName = "KatsebiDb";
     public static IServiceCollection AddDatabase(this IServiceCollection services,Action<DatabaseOptions> databaseOptionsAction)
     {
-        DatabaseOptions databaseOptions = null!;
+        var databaseOptions = new DatabaseOptions();
         databaseOptionsAction.Invoke(databaseOptions);
         if (!databaseOptions.UseInMemoryDatabase.HasValue && string.IsNullOrEmpty(databaseOptions.ConnectionString))
             throw new Exception("One of property must have value");
