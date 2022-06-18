@@ -15,7 +15,7 @@ public class EpisodeConfiguration : IEntityTypeConfiguration<Episode>
         builder.Property(x => x.EpisodeNumber).IsRequired(false);
         builder.Property(x => x.YoutubeUrl).HasMaxLength(500).IsRequired();
         builder.Property(x => x.UploadTime).IsRequired();
-        
+
         builder.HasOne(x => x.Playlist)
             .WithMany(x => x.Episodes)
             .HasForeignKey(x => x.PlaylistId)

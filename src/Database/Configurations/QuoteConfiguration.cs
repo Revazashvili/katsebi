@@ -14,7 +14,7 @@ public class QuoteConfiguration : IEntityTypeConfiguration<Quote>
         builder.HasIndex(x => x.Text);
         builder.Property(x => x.Description).HasMaxLength(1000).IsRequired(false).IsUnicode();
         builder.Property(x => x.Author).HasMaxLength(100).IsRequired().IsUnicode();
-        
+
         builder.HasOne(x => x.Episode)
             .WithMany(x => x.Quotes)
             .HasForeignKey(x => x.EpisodeId)

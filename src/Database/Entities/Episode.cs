@@ -8,6 +8,7 @@ public class Episode
         Guests = new HashSet<Guest>();
         Quotes = new HashSet<Quote>();
     }
+
     public int Id { get; set; }
     public string Name { get; set; }
     public int? EpisodeNumber { get; set; }
