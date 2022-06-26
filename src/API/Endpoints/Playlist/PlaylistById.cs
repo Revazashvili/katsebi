@@ -10,7 +10,7 @@ namespace API.Endpoints.Playlist;
 [Route("api/playlist")]
 public class PlaylistById : EndpointBaseAsync
     .WithRequest<int>
-    .WithResult<PlaylistResponse?>
+    .WithActionResult<PlaylistResponse?>
 {
     private readonly KatsebiContext _context;
 
@@ -18,11 +18,13 @@ public class PlaylistById : EndpointBaseAsync
 
     [HttpGet,SwaggerOperation(Description = "Returns playlist by id",
          OperationId = "Playlist.ById",
-         Tags = new []{"Playlist"})]
-    public override async Task<PlaylistResponse?> HandleAsync([FromQuery] int id,
+         Tags = new []{"Playlist"}),
+    SwaggerResponse(StatusCodes.Status200OK,Type = typeof(PlaylistResponse)),
+    SwaggerResponse(StatusCodes.Status204NoContent,Description = "no playlist can be found with passed id")]
+    public override async Task<ActionResult<PlaylistResponse?>> HandleAsync([FromQuery] int id,
         CancellationToken cancellationToken = new())
     {
         var playlist = await _context.Playlists.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
-        return playlist is null ? PlaylistResponse.Empty : new PlaylistResponse(playlist.Id, playlist.Name);
+        return playlist is null ? NoContent() : Ok(new PlaylistResponse(playlist.Id, playlist.Name));
     }
 }
