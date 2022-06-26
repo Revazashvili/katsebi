@@ -3,6 +3,7 @@ using Ardalis.ApiEndpoints;
 using Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace API.Endpoints.Playlist;
 
@@ -15,7 +16,9 @@ public class PlaylistById : EndpointBaseAsync
 
     public PlaylistById(KatsebiContext context) => _context = context;
 
-    [HttpGet]
+    [HttpGet,SwaggerOperation(Description = "Returns playlist by id",
+         OperationId = "Playlist.ById",
+         Tags = new []{"Playlist"})]
     public override async Task<PlaylistResponse?> HandleAsync([FromQuery] int id,
         CancellationToken cancellationToken = new())
     {
