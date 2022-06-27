@@ -23,7 +23,7 @@ public class EpisodeById : EndpointBaseAsync
      SwaggerResponse(StatusCodes.Status204NoContent,Description = "no episode can be found with passed id")]
     public override async Task<ActionResult<EpisodeResponse?>> HandleAsync([FromQuery]int id, CancellationToken cancellationToken = new())
     {
-        var playlist = await _context.Episodes.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
-        return playlist is null ? NoContent() : Ok(new EpisodeResponse(playlist));
+        var episode = await _context.Episodes.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+        return episode is null ? NoContent() : Ok(new EpisodeResponse(episode));
     }
 }
