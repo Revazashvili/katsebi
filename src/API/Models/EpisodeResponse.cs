@@ -2,7 +2,7 @@ using Database.Entities;
 
 namespace API.Models;
 
-public record EpisodeResponse(int Id, string Name, int? EpisodeNumber, string YoutubeUrl, DateOnly UploadTime,
+public record EpisodeResponse(int Id, string Name, int? EpisodeNumber, string YoutubeUrl, DateTime UploadTime,
     PlaylistResponse PlaylistResponse, IEnumerable<GuestResponse> Guests)
 {
     public EpisodeResponse(Episode episode) : this(episode.Id,episode.Name,episode.EpisodeNumber,episode.YoutubeUrl,episode.UploadTime,
