@@ -1,8 +1,6 @@
-using Database.Common;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using API.Persistence.Common;
 
-namespace Database;
+namespace API.Persistence;
 
 public static class ServiceCollectionExtensions
 {

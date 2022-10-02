@@ -1,4 +1,4 @@
-namespace Database.Common;
+namespace API.Persistence.Common;
 
 #pragma warning disable CS8618
 public class DatabaseOptions

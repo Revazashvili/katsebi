@@ -1,6 +1,6 @@
-using Database.Entities;
+using API.Persistence.Entities;
 
-namespace Database.Configurations;
+namespace API.Persistence.Configurations;
 
 public class GuestConfiguration : IEntityTypeConfiguration<Guest>
 {

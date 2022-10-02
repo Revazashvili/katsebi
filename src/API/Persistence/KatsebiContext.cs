@@ -1,7 +1,7 @@
 using System.Reflection;
-using Database.Entities;
+using API.Persistence.Entities;
 
-namespace Database;
+namespace API.Persistence;
 
 #pragma warning disable CS8618
 public class KatsebiContext : DbContext

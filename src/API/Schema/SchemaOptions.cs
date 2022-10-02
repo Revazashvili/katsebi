@@ -1,5 +1,4 @@
-using Database;
-using Database.Entities;
+using API.Persistence;
 using EntityGraphQL.AspNet;
 using EntityGraphQL.Schema;
 

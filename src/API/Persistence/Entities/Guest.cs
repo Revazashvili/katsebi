@@ -1,4 +1,4 @@
-namespace Database.Entities;
+namespace API.Persistence.Entities;
 
 #pragma warning disable CS8618
 public class Guest

@@ -1,5 +1,5 @@
+using API.Persistence;
 using API.Schema;
-using Database;
 using EntityGraphQL.AspNet;
 using GraphQL.Server.Ui.Altair;
 
