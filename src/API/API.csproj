@@ -8,15 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ardalis.ApiEndpoints" Version="4.0.1" />
         <PackageReference Include="EntityGraphQL.AspNet" Version="3.0.4" />
         <PackageReference Include="GraphQL.Server.Ui.Altair" Version="6.1.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.9" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.9" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
     </ItemGroup>
 
 </Project>
