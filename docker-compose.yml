@@ -4,10 +4,5 @@ services:
     image: katsebi
     build:
       context: .
-      dockerfile: src/API/Dockerfile
     ports:
-      - "5000:5000"
-      - "5001:5001"
-    environment:
-      - ASPNETCORE_HTTP_PORT=https://+:5001
-      - ASPNETCORE_URLS=http://+:5000
+      - "8085:80"
