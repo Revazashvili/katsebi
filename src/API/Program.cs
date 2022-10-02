@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 const string connectionString = "CONNECTION_STRING";
 
 builder.Services
-    .AddDatabase(builder.Configuration.GetValue<string>(connectionString))
+    .AddPersistence(builder.Configuration.GetValue<string>(connectionString))
     .AddGraphQLSchema(SchemaOptions.AddGraphQlOptions);
 
 var app = builder.Build();

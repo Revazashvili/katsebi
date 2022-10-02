@@ -2,7 +2,7 @@ namespace API.Persistence;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString) =>
+    public static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString) =>
         services.AddDbContextPool<KatsebiContext>(builder =>
         {
             builder.UseSqlite(connectionString, optionsBuilder =>
