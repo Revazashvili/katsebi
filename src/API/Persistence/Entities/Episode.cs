@@ -1,7 +1,7 @@
 namespace Database.Entities;
 
 #pragma warning disable CS8618
-public class Episode : Auditable
+public class Episode
 {
     public Episode()
     {

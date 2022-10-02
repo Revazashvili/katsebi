@@ -1,7 +1,7 @@
 namespace Database.Entities;
 
 #pragma warning disable CS8618
-public class Quote : Auditable
+public class Quote
 {
     public int Id { get; set; }
     public string Text { get; set; }
