@@ -22,4 +22,4 @@ app.UseEndpoints(routeBuilder =>
     });
 });
 
-app.Run();
+await app.RunAsync();
