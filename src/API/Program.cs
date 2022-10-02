@@ -1,12 +1,12 @@
-using API.Persistence;
 using API.Schema;
 using EntityGraphQL.AspNet;
 using GraphQL.Server.Ui.Altair;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDatabase(options => options.UseInMemoryDatabase = true);
-builder.Services.AddGraphQLSchema(SchemaOptions.AddGraphQlOptions);
+builder.Services
+    .AddDatabase(options => options.UseInMemoryDatabase = true)
+    .AddGraphQLSchema(SchemaOptions.AddGraphQlOptions);
 
 var app = builder.Build();
 

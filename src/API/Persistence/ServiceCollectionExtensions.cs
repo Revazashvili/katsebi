@@ -1,5 +1,3 @@
-using API.Persistence.Common;
-
 namespace API.Persistence;
 
 public static class ServiceCollectionExtensions

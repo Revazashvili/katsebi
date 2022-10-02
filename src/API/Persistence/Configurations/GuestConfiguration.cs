@@ -1,5 +1,3 @@
-using API.Persistence.Entities;
-
 namespace API.Persistence.Configurations;
 
 public class GuestConfiguration : IEntityTypeConfiguration<Guest>

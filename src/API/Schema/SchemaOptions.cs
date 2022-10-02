@@ -1,6 +1,4 @@
-using API.Persistence;
 using EntityGraphQL.AspNet;
-using EntityGraphQL.Schema;
 
 namespace API.Schema;
 
