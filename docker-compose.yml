@@ -1,8 +1,0 @@
-version: '3'
-services:
-  katsebi:
-    image: katsebi
-    build:
-      context: .
-    ports:
-      - "8085:80"

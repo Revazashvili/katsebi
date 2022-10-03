@@ -1,0 +1,10 @@
+version: '3'
+services:
+  katsebi:
+    build:
+      context: .
+    ports:
+      - "8085:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      CONNECTION_STRING: katsebi.db
