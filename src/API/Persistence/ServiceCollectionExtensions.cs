@@ -14,7 +14,7 @@ internal static class ServiceCollectionExtensions
     internal static IServiceCollection AddPersistence(this IServiceCollection services, string connectionString) =>
         services.AddDbContextPool<KatsebiContext>(builder =>
         {
-            builder.UseSqlite(connectionString, optionsBuilder =>
+            builder.UseSqlite($"Data Source={connectionString}", optionsBuilder =>
             {
                 optionsBuilder.MigrationsAssembly(typeof(KatsebiContext).Assembly.FullName);
                 optionsBuilder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
