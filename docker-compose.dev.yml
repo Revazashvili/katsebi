@@ -1,6 +1,9 @@
-version: '3'
+version: '3.9'
 services:
   katsebi:
+    container_name: katsebi-dev
+    image: katsebi-dev
+    restart: on-failure
     build:
       context: .
     ports:
